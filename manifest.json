@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Speed Control",
+  "version": "1.4",
+  "description": "Set a fixed speed for all YouTube videos with keyboard shortcuts and badge display when speed is not default.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://www.youtube.com/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "increase_speed": {
+      "suggested_key": {
+        "default": "Ctrl+Up",
+        "mac": "Command+Up"
+      },
+      "description": "Increase playback speed"
+    },
+    "decrease_speed": {
+      "suggested_key": {
+        "default": "Ctrl+Down",
+        "mac": "Command+Down"
+      },
+      "description": "Decrease playback speed"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
